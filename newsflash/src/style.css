@@ -1,0 +1,3 @@
+.navElement{
+    @apply hover:font-bold cursor-pointer hover:border-blue-400
+}
