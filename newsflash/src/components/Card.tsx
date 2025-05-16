@@ -2,40 +2,33 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link';
 
-type CardData = {
-  id : number,
-  author : string,
+type NewsArticle = {
   title : string,
-  description : string,
-  url : string,
-  urlToImage : string,
+  summary : string,
+  source : string,
+  image : string,
   publishedAt : string,
-  content : string,
 }
 
-interface CardProps {
-  data: CardData[]; // Accepts an array of CardData
+type props = {
+  article: NewsArticle; // Accepts an array of CardData
 }
 
-const Card: React.FC<CardProps> = ({ data }) => {
+const Card: React.FC<props> = ({ article}) => {
+  
   return (
-     <div className="container mx-auto card-container grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
-      {data.map((item,index) => {
-        const date = new Date(item.publishedAt);
-        const formatted = `${date.getDate()} ${date.toLocaleString('default', { month: 'short' })} ${date.getFullYear()}`;
-
-        return(
-          <div key={index} className="card border p-4">
-          <Image className='mx-auto my-0 text-center' src={item.urlToImage} alt={item.title} width={250} height={250} />
-          <h2 className='text-lg mt-5 mb-3 font-bold'>{item.title}</h2>
-           <p className='mt-4 line-clamp-3'>{item.description}</p>
-           <p className='mt-4 text-md'>Published At : {formatted}</p>
-           <button className='border px-3 py-2 hover:bg-white hover:text-black mt-5'>
-            <Link href={item.url} target="_blank" rel="noopener noreferrer">Read more...</Link>
-          </button>
+       <div className="rounded-xl shadow-md border p-4 w-full max-w-md bg-white">
+        <img
+          src='news.jpg'
+          alt={article.title}
+          className="w-auto h-100 rounded-md mb-3 object-cover"
+        />
+        <h2 className="text-lg font-semibold">{article.title}</h2>
+        <p className="text-sm text-gray-600">{article.summary}</p>
+        <div className="text-xs text-gray-500 mt-2">
+          <span>Source: {article.source}</span> · <span>{article.publishedAt}</span>
         </div>
-        )
-    })}
+        <Link href='/{title}' className='cursor-pointer text-sm pt-3 inline-block  hover:text-blue-500'>Read More...</Link>
     </div>
   );
 };
