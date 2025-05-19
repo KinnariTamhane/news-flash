@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Card from "@/components/Card";
 import NewsContainer from "@/components/NewsContainer";
 import Link from "next/link";
 import SearchNews from '@/components/SearchNews';
