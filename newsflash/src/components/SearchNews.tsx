@@ -1,24 +1,22 @@
-"use client";
-import {useState} from 'react'
-import React from 'react'
+import React from 'react';
 
-type SearchProps = {
-  onSearchChange: (value: string) => void;
+type SearchNewsProps = {
+  onSearchChange: (query: string) => void;
 };
 
-function SearchNews({onSearchChange}:SearchProps) {
-
-const [searchInput,setSearchInput] = useState('');
-
-  if(searchInput){
-  onSearchChange(searchInput)
-  }
+const SearchNews: React.FC<SearchNewsProps> = ({ onSearchChange }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onSearchChange(e.target.value);
+  };
 
   return (
-    <div>
-        <input className='border rounded-xl border-b-gray-400 px-3 py-2 mt-8 block w-full h-1/2 outline-0 focus:border-blue-400 ' placeholder='Search' value={searchInput} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchInput(e.target.value)}></input>
-    </div>
-  )
-}
+    <input
+      type="text"
+      placeholder="Search news..."
+      onChange={handleChange}
+      className='border rounded-xl border-b-gray-400 px-3 py-2 mt-8 block w-full h-1/2 outline-0 focus:border-blue-400 ' 
+    />
+  );
+};
 
-export default SearchNews
+export default SearchNews;

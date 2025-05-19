@@ -44,7 +44,7 @@ const NewsContainer: React.FC<Props> = ({ data }) => {
           <div key={category} className="flex flex-col gap-5">
             <h2 id={category} className="text-3xl font-bold uppercase text-center">{category}</h2>
             <div className="md:flex md:gap-5">
-              {/* LEFT: Main article (2/3) */}
+
               <div className="md:w-2/3 bg-gray-100 shadow rounded p-4">
                 <Image
                   src='/news.jpg'
@@ -58,8 +58,8 @@ const NewsContainer: React.FC<Props> = ({ data }) => {
                 <p className="mt-3 text-gray-700">{mainArticle.summary}</p>
               </div>
 
-              {/* RIGHT: Other articles (1/3) */}
-              <div className="md:w-1/3 bg-white rounded  space-y-3 overflow-y-auto max-h-[500px]">
+
+              <div className="md:w-1/3 bg-white rounded  space-y-3 overflow-y-auto h-[400px] overflow-auto">
                 {otherArticles.map((article) => (
                   <div
                     key={article.id}
