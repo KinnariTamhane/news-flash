@@ -1,63 +1,80 @@
-"use client"
-import React, { useState } from "react";
-import Image from "next/image";
+import React, { useState } from 'react';
+import Image from 'next/image';
 
 type NewsArticle = {
-  id:string,
-  title : string,
-  summary : string,
-  source : string,
-  image : string,
-  publishedAt : string,
-}
-
-type NewsContainerProps = {
-  data: Record<string, NewsArticle[]>;
+  id: string;
+  title: string;
+  summary: string;
+  source: string;
+  publishedAt: string;
+  image: string;
 };
 
-const NewsContainer: React.FC<NewsContainerProps> = ({ data }) => {
-  // Flatten all articles
-  const allArticles: { category: string; article: NewsArticle }[] = Object.entries(data).flatMap(
-    ([category, articles]) =>
-      articles.map((article) => ({
-        category,
-        article,
-      }))
-  );
+type NewsData = {
+  [category: string]: NewsArticle[];
+};
 
-  // Default to first article
-  const [selected, setSelected] = useState<{ category: string; article: NewsArticle }>(allArticles[0]);
+type Props = {
+  data: NewsData;
+};
+
+const NewsContainer: React.FC<Props> = ({ data }) => {
+  const [selectedArticles, setSelectedArticles] = useState<Record<string, NewsArticle>>(() => {
+    const initial: Record<string, NewsArticle> = {};
+    for (const category in data) {
+      initial[category] = data[category][0];
+    }
+    return initial;
+  });
+
+  const handleArticleClick = (category: string, article: NewsArticle) => {
+    setSelectedArticles((prev) => ({
+      ...prev,
+      [category]: article,
+    }));
+  };
 
   return (
-    <div className="md:flex md:h-screen p-6 gap-6 bg-gray-100 ">
-      {/* Left: Selected article */}
-      <div className="w-full md:w-2/3 bg-white p-6 rounded-xl shadow md:overflow-y-auto">
-        <p className=" text-blue-500 uppercase font-bold text-xl mb-2">{selected.category}</p>
-        <h1 className="text-3xl font-bold mb-4">{selected.article.title}</h1>
-         <p className="text-gray-700">{selected.article.summary}</p>
-        <Image src='/india_world_cup.png' height="400" width="400"  className="mb-5 mt-5" alt={selected.article.title}/>
-       
-         <div className="text-xs text-gray-500 mt-2">
-          <span>Source: {selected.article.source}</span> · <span>{selected.article.publishedAt}</span>
-        </div>
-      </div>
+    <div className="flex flex-col gap-10 p-5">
+      {Object.entries(data).map(([category, articles]) => {
+        const mainArticle = selectedArticles[category];
+        const otherArticles = articles.filter((a) => a.id !== mainArticle.id);
 
-      {/* Right: All other articles */}
-      <div className="w-full md:w-1/3 md:overflow-y-auto md:space-y-4 mt-10 md:mt-0">
-        {allArticles
-          .filter((item) => item.article.id !== selected.article.id)
-          .map(({ category, article }) => (
-            <div
-              key={article.id}
-              className="bg-white p-4 rounded-lg shadow hover:bg-gray-50 cursor-pointer mt-3 md:mt-0"
-              onClick={() => setSelected({ category, article })}
-            >
-              <p id={category} className="text-xs text-blue-500 capitalize">{category}</p>
-              <h3 className="font-semibold">{article.title}</h3>
-              {/* <p className="text-sm text-gray-600">{article.summary}</p> */}
+        return (
+          <div key={category} className="flex flex-col gap-5">
+            <h2 id={category} className="text-3xl font-bold uppercase text-center">{category}</h2>
+            <div className="md:flex md:gap-5">
+              {/* LEFT: Main article (2/3) */}
+              <div className="md:w-2/3 bg-gray-100 shadow rounded p-4">
+                <Image
+                  src='/news.jpg'
+                  alt={mainArticle.title}
+                  width={200}
+                  height={200}
+                  className="rounded mb-3 mx-auto my-0 md:mx-0 md:my-0 pb-3"
+                />
+                <h3 className="text-2xl font-semibold">{mainArticle.title}</h3>
+                <p className="text-sm text-gray-500">{mainArticle.publishedAt} | {mainArticle.source}</p>
+                <p className="mt-3 text-gray-700">{mainArticle.summary}</p>
+              </div>
+
+              {/* RIGHT: Other articles (1/3) */}
+              <div className="md:w-1/3 bg-white rounded  space-y-3 overflow-y-auto max-h-[500px]">
+                {otherArticles.map((article) => (
+                  <div
+                    key={article.id}
+                    className="cursor-pointer hover:bg-gray-100 p-2 rounded-xl border mb-5 mt-10 md:mt-0"
+                    onClick={() => handleArticleClick(category, article)}
+                  >
+                    <p className="font-medium">{article.title}</p>
+                    <p className="text-sm text-gray-500">{article.publishedAt}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
-      </div>
+          </div>
+        );
+      })}
     </div>
   );
 };

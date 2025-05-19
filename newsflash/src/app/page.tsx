@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Card from "@/components/Card";
 import NewsContainer from "@/components/NewsContainer";
-
+import Link from "next/link";
+import SearchNews from '@/components/SearchNews';
+import Navigation from '@/components/Navigation';
+import ClientWrapper from './ClientWrapper'
 
  async function fetchData(){
   try{
@@ -19,8 +22,8 @@ export default async function Home() {
   const result = await fetchData();
 
   return (
-    <div>
-       <NewsContainer data={result}/>
-    </div>
+    <main>
+      <ClientWrapper result={result}/>
+    </main>
   );
 }

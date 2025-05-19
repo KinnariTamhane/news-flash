@@ -1,7 +1,7 @@
 
 export const newsData = [
   {
-    "tech": [
+    "technology": [
       {
         "id": "1",
         "title": "OpenAI Releases New GPT Model",
