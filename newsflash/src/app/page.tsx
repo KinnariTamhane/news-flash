@@ -1,14 +1,7 @@
 import Image from "next/image";
 import Card from "@/components/Card";
+import NewsContainer from "@/components/NewsContainer";
 
-
-export type NewsArticle = {
-  title: string;
-  summary: string;
-  source: string;
-  publishedAt: string;
-  image: string;
-};
 
  async function fetchData(){
   try{
@@ -27,18 +20,7 @@ export default async function Home() {
 
   return (
     <div>
-       {
-        Object.entries(result).map(([category, articles])=>(
-          <div id={category} className="" key={category}>
-            <h1 className="px-5 py-10 uppercase font-bold mb-5 text-3xl text-center"> {category} </h1>
-            <div className="grid xl:grid-cols-3 gap-5 px-5 mb-10">
-            {(articles as NewsArticle[]).map((article,index)=>(
-                <Card key={index} article={article}/>
-              ))
-            }
-            </div>
-          </div>
-        ))}
+       <NewsContainer data={result}/>
     </div>
   );
 }

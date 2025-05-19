@@ -21,7 +21,8 @@ const nextConfig: NextConfig = {
     //   'phandroid.com',
     //   'codrops-1f606.kxcdn.com',
     //   'www.presse-citron.net',
-      'www.leadedsolder.com'
+      'www.leadedsolder.com',
+    'via.placeholder.com',
     ], // Add the domain here
   },
 };

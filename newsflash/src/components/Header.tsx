@@ -9,10 +9,10 @@ const [searchInput,setSearchInput] = useState('');
   return (
    <>
     <div className='block md:grid md:grid-cols-3 mx-4 md:mx-0 mb-'>
-        <Link href="/" className='px-5 py-3 mt-12 md:mt-0'>
+        <Link href="/" className='px-5 py-3 mt-12 md:mt-0 w-full'>
             <p className='text-center md:text-left text-4xl md:text-6xl pt-2'>🌍 <span className='text-3xl md:text-4xl align-middle'>NewsFlash</span></p>
         </Link>
-     <input className='border rounded-xl border-b-gray-400 px-3 py-2 mt-8 w-full h-1/2 outline-0 focus:border-blue-400 ' placeholder='Search' value={searchInput} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchInput(e.target.value)}></input>
+     <input className='border rounded-xl border-b-gray-400 px-3 py-2 mt-8 block w-full h-1/2 outline-0 focus:border-blue-400 ' placeholder='Search' value={searchInput} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchInput(e.target.value)}></input>
     </div>
     <nav className='flex justify-around overflow-auto'>
         <ul className='flex justify-around w-full md:w-[60%] md:mx-10 mx-2 my-8 text-sm md:text-xl'>
