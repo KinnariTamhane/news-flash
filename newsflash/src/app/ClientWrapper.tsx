@@ -30,7 +30,7 @@ const ClientWrapper: React.FC<ClientWrapperProps> = ({ result }) => {
 
   useEffect(() => {
     if (!query.trim()) {
-      setFilteredData(result); // reset to full data if query empty
+      setFilteredData(result);
       return;
     }
 
@@ -38,9 +38,9 @@ const ClientWrapper: React.FC<ClientWrapperProps> = ({ result }) => {
 
     Object.entries(result).forEach(([category, articles]) => {
       const filteredArticles = articles.filter(
-        (a) =>
-          a.title.toLowerCase().includes(query.toLowerCase()) ||
-          a.summary.toLowerCase().includes(query.toLowerCase())
+        (item) =>
+          item.title.toLowerCase().includes(query.toLowerCase()) ||
+          item.summary.toLowerCase().includes(query.toLowerCase())
       );
       if (filteredArticles.length > 0) {
         newFilteredData[category] = filteredArticles;
@@ -60,9 +60,7 @@ const ClientWrapper: React.FC<ClientWrapperProps> = ({ result }) => {
         </Link>
         <SearchNews onSearchChange={setQuery} />
       </div>
-
       <Navigation />
-
       <NewsContainer data={query.trim() === '' ? result : filteredData} />
     </>
   );

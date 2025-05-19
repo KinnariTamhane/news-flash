@@ -38,7 +38,7 @@ const NewsContainer: React.FC<Props> = ({ data }) => {
     <div className="flex flex-col gap-10 p-5">
       {Object.entries(data).map(([category, articles]) => {
         const mainArticle = selectedArticles[category];
-        const otherArticles = articles.filter((a) => a.id !== mainArticle.id);
+        const otherArticles = articles.filter((item) => item.id !== mainArticle.id);
 
         return (
           <div key={category} className="flex flex-col gap-5">
