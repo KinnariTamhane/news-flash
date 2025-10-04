@@ -11,6 +11,7 @@ NewsFlash  is a modern, responsive web application that displays categorised new
 - Client-Side Interactivity - Smooth transitions and updates without reloading the page.
 
 ## 🛠 Tech Stack
+
 - Next.js - Framework for React with built-in routing and SSR support.
 - React – Core library for building the UI.
 - TypeScript – Type-safe JavaScript for scalable and maintainable code.
@@ -19,6 +20,7 @@ NewsFlash  is a modern, responsive web application that displays categorised new
 - Flexbox & Grid – For responsive and dynamic layout composition.
 
 ## 📸 Project Preview
+
 <img width="684" alt="desktop" src="https://github.com/user-attachments/assets/adde93bb-6595-4457-ab16-56cb49944acb" />
 <img width="208" alt="mobile" src="https://github.com/user-attachments/assets/d08f8681-bd34-4fce-9809-5673146e2b7a" />
 <img width="408" alt="ipad" src="https://github.com/user-attachments/assets/426e14a1-6340-4857-bfb1-48762c68113d" />
