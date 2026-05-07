@@ -12,8 +12,8 @@ type Article = {
   summary: string;
   url: string;
   publishedAt: string;
-  source?: string;
-  image?: string;
+  source: string;
+  image: string;
 };
 
 type NewsData = {

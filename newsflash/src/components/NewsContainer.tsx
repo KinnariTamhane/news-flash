@@ -1,18 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-
-type NewsArticle = {
-  id: string;
-  title: string;
-  summary: string;
-  source: string;
-  publishedAt: string;
-  image: string;
-};
-
-type NewsData = {
-  [category: string]: NewsArticle[];
-};
+import { NewsArticle, NewsData } from '@/types/news';
 
 type Props = {
   data: NewsData;
