@@ -1,11 +1,6 @@
-import Image from "next/image";
-import NewsContainer from "@/components/NewsContainer";
-import Link from "next/link";
-import SearchNews from '@/components/SearchNews';
-import Navigation from '@/components/Navigation';
 import ClientWrapper from './ClientWrapper'
 
- async function fetchData(){
+async function fetchData(){
   try{
     const res = await fetch('http://localhost:3000/api');
     const data = await res.json();
