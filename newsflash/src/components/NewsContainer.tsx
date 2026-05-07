@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { NewsArticle, NewsData } from '@/types/news';
+import { NewsArticle, NewsData } from'@/types/news';
 
 type Props = {
   data: NewsData;
